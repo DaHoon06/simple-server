@@ -1,13 +1,13 @@
 import express, { Request, Response } from "express";
-import serverless from "serverless-http";
 
 const app = express();
-const router = express.Router();
 
-router.get("/hello", (req: Request, res: Response) => {
-  res.json({ message: "Hello from TypeScript + Express + Vercel!" });
+app.use(express.static("public"));
+
+app.get("/hello", function (req: Request, res: Response) {
+  res.json({ message: "Hello, TypeScript!" });
 });
 
-app.use("/", router);
+app.listen(3000, () => console.log("Server ready on port 3000."));
 
-export default serverless(app);
+module.exports = app;

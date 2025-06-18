@@ -2,11 +2,11 @@
   "name": "simple-server",
   "version": "1.0.0",
   "description": "초간단 백엔드 서버",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node api/index.ts",
     "dev": "ts-node api/index.ts"
   },
   "author": "",
