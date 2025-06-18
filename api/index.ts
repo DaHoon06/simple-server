@@ -8,6 +8,6 @@ router.get("/hello", (req: Request, res: Response) => {
   res.json({ message: "Hello from TypeScript + Express + Vercel!" });
 });
 
-app.use("/api", router);
+app.use("/", router);
 
 export default serverless(app);
