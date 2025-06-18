@@ -1,12 +1,10 @@
-import express from "express";
+import express, { Request, Response } from "express";
+import serverless from "serverless-http";
 
 const app = express();
-const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello, TypeScript!");
+app.get("/api/hello", (req: Request, res: Response) => {
+  res.json({ message: "Hello from TypeScript + Express + Vercel!" });
 });
 
-app.listen(port, () => {
-  console.log(`서버가 http://localhost:${port} 에서 실행중입니다.`);
-});
+export default serverless(app);
