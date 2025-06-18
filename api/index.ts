@@ -4,7 +4,7 @@ import serverless from "serverless-http";
 const app = express();
 const router = express.Router();
 
-app.get("/hello", (req: Request, res: Response) => {
+router.get("/hello", (req: Request, res: Response) => {
   res.json({ message: "Hello from TypeScript + Express + Vercel!" });
 });
 
