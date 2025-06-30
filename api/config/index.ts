@@ -7,10 +7,11 @@ export const CORS_OPTIONS = {
   credentials: true,
 };
 
-type EndPointType = "playground";
+type EndPointType = "playground" | "weather";
 
 export const END_POINTS: Record<EndPointType, string> = {
   playground: "playground",
+  weather: "weather",
 };
 
 export type { EndPointType };
