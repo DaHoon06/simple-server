@@ -17,11 +17,15 @@ app.get("/", AuthorizationMiddleware, function (req: Request, res: Response) {
   res.json(data);
 });
 
-app.get("/health-check", async (req: Request, res: Response) => {
-  const systemRepository = new SystemRepository(supabaseClient);
-  const timestamp = await systemRepository.updateSystemDate();
-  res.json({ message: `System date updated: ${timestamp}` });
-});
+app.get(
+  "/health-check",
+  AuthorizationMiddleware,
+  async (req: Request, res: Response) => {
+    const systemRepository = new SystemRepository(supabaseClient);
+    const timestamp = await systemRepository.updateSystemDate();
+    res.json({ message: `System date updated: ${timestamp}` });
+  }
+);
 
 /**
  * User API
