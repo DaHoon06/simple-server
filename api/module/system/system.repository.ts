@@ -16,14 +16,19 @@ export class SystemRepository {
     return data;
   }
 
-  async updateSystemDate(): Promise<number> {
-    const timestamp = new Date().getTime();
-    await this.supabaseClient
-      .from(this.table)
-      .update({
-        system_date: timestamp,
-      })
-      .eq("id", 1);
-    return timestamp;
+  async updateSystemDate(): Promise<string> {
+    const system_date = new Date().toISOString();
+    try {
+      await this.supabaseClient
+        .from(this.table)
+        .update({
+          system_date,
+        })
+        .eq("id", 1);
+      return system_date;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 }
