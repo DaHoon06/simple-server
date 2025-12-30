@@ -4,14 +4,16 @@ import { WeatherService } from "./services";
 export const Routes = async (
   endpoint: EndPointType
 ): Promise<Record<string, any>> => {
+  console.log(endpoint);
   switch (endpoint) {
     case END_POINTS.playground:
       // TODO service 로 연결해서 데이터 반환
       return { message: "Hello, TypeScript!" };
     case END_POINTS.weather:
-      const weatherData = await WeatherService.requestWeatherData();
+      const weatherData = await WeatherService.requestWeatherDataGetToday();
       return { message: weatherData };
     default:
+      console.log("TEST");
       return { error: "Unauthorized" };
   }
 };

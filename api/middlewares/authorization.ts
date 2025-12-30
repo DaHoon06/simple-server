@@ -1,4 +1,7 @@
 import { Request, Response, NextFunction } from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const API_KEY = process.env.API_KEY;
 

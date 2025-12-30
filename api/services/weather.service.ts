@@ -1,5 +1,8 @@
 import { AxiosInstance } from "axios";
 import { axiosInstance } from "../lib/axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 class WeatherService {
   private fetcher: AxiosInstance;
@@ -7,21 +10,31 @@ class WeatherService {
   private readonly BASE_URL: string;
 
   constructor() {
-    this.API_KEY = process.env.API_KEY as string;
-    this.BASE_URL = process.env.BASE_URL as string;
+    this.API_KEY = process.env.WEATHER_API_KEY as string;
+    this.BASE_URL = process.env.WEATHER_API_URL as string;
     //TODO header 변경
     const config = {
       baseURL: this.BASE_URL,
       headers: {
         "Content-Type": "application/json",
-        "X-API-KEY": this.API_KEY,
       },
     };
     this.fetcher = axiosInstance(config);
   }
 
   // TODO 날씨 요청
-  async requestWeatherData() {
+  async requestWeatherDataGetToday() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const url = `${this.BASE_URL}?pageNo=1&numOfRows=1000&dataType=JSON&base_date=${year}${month}${day}&base_time=${hour}00&nx=55&ny=127&authKey=${this.API_KEY}`;
+    console.log(url);
+    const response = await this.fetcher.get(url);
+
+    console.log(response.data);
+    return response.data;
     return {
       data: [
         {
